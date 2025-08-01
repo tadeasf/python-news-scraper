@@ -28,11 +28,28 @@ class BaseScraper(ABC):
                 headless=True,
                 args=[
                     '--no-sandbox',
-                    '--disable-dev-shm-usage'
+                    '--disable-dev-shm-usage',
+                    '--disable-features=VizDisplayCompositor',
+                    '--disable-background-timer-throttling',
+                    '--disable-renderer-backgrounding'
                     # Removed GPU and other restrictive flags that might affect networking
                 ]
             ) as browser:
-                page = await browser.new_page()
+                # Handle setContrast error in camoufox
+                try:
+                    page = await browser.new_page()
+                except Exception as page_error:
+                    if "setContrast" in str(page_error):
+                        self.logger.warning(f"Browser contrast setting failed, retrying: {page_error}")
+                        # This is a known issue with some camoufox versions
+                        # Try again - sometimes it works on second attempt
+                        try:
+                            page = await browser.new_page()
+                        except:
+                            # If it still fails, re-raise the original error
+                            raise page_error
+                    else:
+                        raise page_error
                 
                 # Set realistic viewport size
                 await page.set_viewport_size({"width": 1920, "height": 1080})

@@ -47,14 +47,27 @@ class CzechNLPPipeline:
                 
             # Initialize multilingual sentiment analysis
             # Using a multilingual model that should work with Czech
-            self.sentiment_pipeline = pipeline(
-                "sentiment-analysis",
-                model="cardiffnlp/twitter-xlm-roberta-base-sentiment",
-                return_all_scores=True
-            )
+            try:
+                self.sentiment_pipeline = pipeline(
+                    "sentiment-analysis",
+                    model="tabularisai/multilingual-sentiment-analysis",
+                    return_all_scores=True
+                )
+            except Exception as sentiment_error:
+                logger.warning(f"Failed to load preferred sentiment model, falling back to distilbert: {sentiment_error}")
+                # Fallback to a simpler model
+                self.sentiment_pipeline = pipeline(
+                    "sentiment-analysis",
+                    model="distilbert-base-uncased-finetuned-sst-2-english",
+                    return_all_scores=True
+                )
             
             # Initialize sentence transformer for semantic similarity
-            self.sentence_model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+            try:
+                self.sentence_model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+            except Exception as sentence_error:
+                logger.warning(f"Failed to load sentence transformer, some features will be unavailable: {sentence_error}")
+                self.sentence_model = None
             
             # Initialize text preprocessing tools
             self.vectorizer = TfidfVectorizer(
@@ -286,6 +299,10 @@ class CzechNLPPipeline:
         if not self._initialized:
             raise RuntimeError("NLP pipeline not initialized")
             
+        if self.sentence_model is None:
+            logger.warning("Sentence model not available, returning 0.0 similarity")
+            return 0.0
+            
         try:
             embeddings = self.sentence_model.encode([text1, text2])
             similarity = np.dot(embeddings[0], embeddings[1]) / (
@@ -300,6 +317,10 @@ class CzechNLPPipeline:
         """Cluster articles using semantic embeddings."""
         if not self._initialized:
             raise RuntimeError("NLP pipeline not initialized")
+            
+        if self.sentence_model is None:
+            logger.warning("Sentence model not available, returning sequential clusters")
+            return list(range(len(texts)))
             
         if len(texts) < n_clusters:
             return list(range(len(texts)))
