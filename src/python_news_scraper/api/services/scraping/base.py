@@ -26,20 +26,9 @@ class BaseScraper(ABC):
             async with AsyncCamoufox(
                 geoip=False,  # Disable geoip to avoid potential network issues
                 headless=True,
-                # Use config parameter instead of prefs for camoufox
-                config={
-                    'browser.display.use_system_colors': False,
-                    'browser.display.use_document_colors': True,
-                    'layout.css.forced-colors.enabled': False,
-                    'layout.css.prefers-color-scheme.content-override': 0
-                },
                 args=[
                     '--no-sandbox',
-                    '--disable-dev-shm-usage',
-                    '--disable-features=VizDisplayCompositor',
-                    '--disable-background-timer-throttling',
-                    '--disable-renderer-backgrounding'
-                    # Browser preferences are now handled via config parameter
+                    '--disable-dev-shm-usage'
                 ]
             ) as browser:
                 page = await browser.new_page()
