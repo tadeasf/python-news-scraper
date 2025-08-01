@@ -26,8 +26,8 @@ class BaseScraper(ABC):
             async with AsyncCamoufox(
                 geoip=False,  # Disable geoip to avoid potential network issues
                 headless=True,
-                # Add Firefox preferences to disable contrast-related features
-                prefs={
+                # Use config parameter instead of prefs for camoufox
+                config={
                     'browser.display.use_system_colors': False,
                     'browser.display.use_document_colors': True,
                     'layout.css.forced-colors.enabled': False,
@@ -39,7 +39,7 @@ class BaseScraper(ABC):
                     '--disable-features=VizDisplayCompositor',
                     '--disable-background-timer-throttling',
                     '--disable-renderer-backgrounding'
-                    # Removed contrast-related flags, using prefs instead
+                    # Browser preferences are now handled via config parameter
                 ]
             ) as browser:
                 page = await browser.new_page()
