@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mb-6">
+    <!-- Search and Filter Controls -->
+    <div class="bg-white p-4 shadow mb-4">
+        <div class="flex flex-wrap gap-4 items-end">
+            <!-- Search -->
+            <div class="flex-1 min-w-64">
+                <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Hledat v článcích</label>
+                <input type="text" id="search" name="search" value="{{ current_search }}"
+                    placeholder="Hledat v titulcích a perexech..."
+                    class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    hx-get="/" hx-trigger="input changed delay:500ms, search" hx-target="#articles-container"
+                    hx-include="[name='source']" hx-indicator="#loading-indicator">
+            </div>
+
+            <!-- Source Filter -->
+            <div>
+                <label for="source" class="block text-sm font-medium text-gray-700 mb-1">Zdroj</label>
+                <select name="source" id="source"
+                    class="px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    hx-get="/" hx-trigger="change" hx-target="#articles-container" hx-include="[name='search']"
+                    hx-indicator="#loading-indicator">
+                    <option value="">Všechny zdroje</option>
+                    {% for src in available_sources %}
+                    <option value="{{ src }}" {% if src==current_source %}selected{% endif %}>
+                        {{ src.title() }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Manual Scrape Button -->
+            <div>
+                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 font-medium transition-colors"
+                    hx-post="/scrape" hx-target="#scrape-result" hx-indicator="#scrape-loading">
+                    Aktualizovat články
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loading-indicator" class="htmx-indicator mt-2">
+            <div class="flex items-center text-blue-600">
+                <svg class="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
+                Načítání...
+            </div>
+        </div>
+
+        <!-- Scrape loading indicator -->
+        <div id="scrape-loading" class="htmx-indicator mt-2">
+            <div class="flex items-center text-green-600">
+                <svg class="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
+                Aktualizuji články...
+            </div>
+        </div>
+
+        <!-- Scrape result -->
+        <div id="scrape-result"></div>
+    </div>
+
+    <!-- Articles Container -->
+    <div id="articles-container">
+        {% include "articles_list.html" %}
+    </div>
+</div>
+{% endblock %}

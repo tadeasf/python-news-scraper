@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Czech News Scraper{% endblock %}</title>
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto max-w-6xl">
+            <h1 class="text-2xl font-bold">Czech News Scraper</h1>
+            <p class="text-blue-200">Automatický sběr zpráv z českých zpravodajských portálů</p>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-6xl p-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto max-w-6xl text-center">
+            <p>&copy; 2024 Czech News Scraper</p>
+        </div>
+    </footer>
+
+    <script>
+        // HTMX loading indicators
+        document.addEventListener('htmx:beforeRequest', function (evt) {
+            evt.target.classList.add('loading');
+        });
+
+        document.addEventListener('htmx:afterRequest', function (evt) {
+            evt.target.classList.remove('loading');
+        });
+    </script>
+</body>
+
+</html>
