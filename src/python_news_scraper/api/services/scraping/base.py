@@ -28,7 +28,10 @@ class BaseScraper(ABC):
                 headless=True,
                 args=[
                     '--no-sandbox',
-                    '--disable-dev-shm-usage'
+                    '--disable-dev-shm-usage',
+                    '--disable-accessibility',
+                    '--disable-accessibility-events',
+                    '--disable-high-contrast'
                 ]
             ) as browser:
                 page = await browser.new_page()
