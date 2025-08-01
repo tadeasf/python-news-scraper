@@ -3,6 +3,12 @@ from sqlmodel import SQLModel, create_engine, Session
 from typing import AsyncGenerator
 import os
 
+# Import all models to ensure they're registered with SQLModel
+from .models import (
+    Article, Entity, ArticleEntity, Topic, ArticleTopic, 
+    SentimentAnalysis
+)
+
 DATABASE_URL = "sqlite:///./news_scraper.db"
 
 engine = create_engine(DATABASE_URL, echo=True)
@@ -15,8 +21,12 @@ async def create_db_and_tables():
 
 def get_session():
     """Get database session."""
-    with Session(engine) as session:
-        yield session
+    return Session(engine)
+
+
+def get_database_url():
+    """Get the database URL."""
+    return DATABASE_URL
 
 
 async def get_async_session():

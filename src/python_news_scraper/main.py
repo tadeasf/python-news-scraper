@@ -5,6 +5,9 @@ from fastapi.templating import Jinja2Templates
 from .core.database import create_db_and_tables
 from .core.migration import run_migrations
 from .api.routes.articles import router as articles_router
+from .api.routes.search import router as search_router
+from .api.routes.nlp import router as nlp_router
+from .api.services.nlp.nlp_service import nlp_service
 from .core.scheduler import start_scheduler, stop_scheduler
 from .core.logging_handler import configure_logging, get_logger, shutdown_logging
 
@@ -36,6 +39,13 @@ async def lifespan(app: FastAPI):
     await start_scheduler()
     logger.info("Background scheduler started")
     
+    # Initialize NLP service (this might take a while on first run)
+    try:
+        await nlp_service.initialize()
+        logger.info("NLP service initialized successfully")
+    except Exception as e:
+        logger.warning(f"NLP service initialization failed: {e}. NLP features will be unavailable.")
+    
     yield
     
     # Shutdown
@@ -57,6 +67,8 @@ app = FastAPI(
 
 # Include routers
 app.include_router(articles_router)
+app.include_router(search_router)
+app.include_router(nlp_router)
 
 # Mount static files (if needed in the future)
 # app.mount("/static", StaticFiles(directory="static"), name="static")

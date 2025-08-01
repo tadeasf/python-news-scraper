@@ -277,3 +277,21 @@ async def schedule_scraping(
     except Exception as e:
         logger.error(f"Error scheduling scraping task: {e}")
         return {"error": f"Failed to schedule task: {str(e)}"}, 500
+
+
+@router.get("/search", response_class=HTMLResponse)
+async def search_page(request: Request):
+    """Advanced search page."""
+    return templates.TemplateResponse("advanced_search.html", {"request": request})
+
+
+@router.get("/analytics", response_class=HTMLResponse)
+async def analytics_page(request: Request):
+    """Topic analysis and source comparison page."""
+    return templates.TemplateResponse("topic_analysis.html", {"request": request})
+
+
+@router.get("/nlp", response_class=HTMLResponse)
+async def nlp_page(request: Request):
+    """NLP processing status page."""
+    return templates.TemplateResponse("nlp_status.html", {"request": request})
