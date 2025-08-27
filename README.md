@@ -6,20 +6,20 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.116+-green.svg)](https://fastapi.tiangolo.com)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-## 🎯 Project Vision
+## Project Vision
 
 Transform how we understand Czech media landscape by providing **data-driven insights** into how different news outlets cover the same stories, revealing **media bias patterns**, **semantic similarities**, and **editorial perspectives** through advanced NLP and analytics.
 
-## ✨ Current Features
+## Current Features
 
-- 🔄 **Automated Scraping**: Concurrent scraping from 4 major Czech news sources every 2 hours
-- 🌐 **Modern Web Interface**: HTMX-powered responsive UI with real-time updates
-- 🔍 **Advanced Filtering**: Source-based filtering and search capabilities
-- 📊 **Task Management**: Quartz-like background job scheduling with monitoring
-- 🚀 **High Performance**: Async FastAPI backend with concurrent task processing
-- 🛡️ **Anti-Bot Protection**: Camoufox with GeoIP bypass for reliable scraping
+- **Automated Scraping**: Concurrent scraping from 4 major Czech news sources every 2 hours
+- **Modern Web Interface**: HTMX-powered responsive UI with real-time updates
+- **Advanced Filtering**: Source-based filtering and search capabilities
+- **Task Management**: Quartz-like background job scheduling with monitoring
+- **High Performance**: Async FastAPI backend with concurrent task processing
+- 🛡**Anti-Bot Protection**: Camoufox with GeoIP bypass for reliable scraping
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```mermaid
 graph TB
@@ -79,9 +79,9 @@ graph TB
     F3 --> F4
 ```
 
-## 🛣️ Development Roadmap
+## Development Roadmap
 
-### 🎯 Phase 1: Foundation (COMPLETED ✅)
+### Phase 1: Foundation (COMPLETED ✅)
 - [x] Basic scraping infrastructure
 - [x] FastAPI backend with async support
 - [x] SQLite database with SQLModel
@@ -89,7 +89,7 @@ graph TB
 - [x] Web interface with HTMX
 - [x] Concurrent scraping capabilities
 
-### 🔍 Phase 2: Advanced Search & NLP (NEXT)
+### Phase 2: Advanced Search & NLP (NEXT)
 ```mermaid
 gantt
     title Phase 2: Search & NLP Implementation
@@ -106,19 +106,19 @@ gantt
     Topic Modeling          :7d
 ```
 
-**🔍 Full-Text Search Implementation**
+**Full-Text Search Implementation**
 - [ ] **Database Migration**: PostgreSQL with full-text search capabilities
 - [ ] **Search Engine**: Advanced text indexing with ranking algorithms
 - [ ] **Query Interface**: Natural language search with filters
 - [ ] **Search Analytics**: Query performance and user behavior tracking
 
-**🧠 Semantic Analysis Engine**
+**Semantic Analysis Engine**
 - [ ] **NLP Pipeline**: spaCy + custom Czech language models
 - [ ] **Entity Recognition**: People, places, organizations, topics
 - [ ] **Sentiment Analysis**: Article tone and emotional content analysis
 - [ ] **Topic Modeling**: LDA/BERT-based topic discovery and clustering
 
-### 📊 Phase 3: Media Analytics Dashboard
+### Phase 3: Media Analytics Dashboard
 ```mermaid
 gantt
     title Phase 3: Analytics Dashboard
@@ -134,56 +134,56 @@ gantt
     Export Capabilities    :3d
 ```
 
-**📈 Advanced Analytics Features**
+**Advanced Analytics Features**
 - [ ] **N-gram Analysis**: Word frequency and phrase pattern analysis
 - [ ] **Media Bias Detection**: Algorithmic bias identification using linguistic patterns
 - [ ] **Comparative Analysis**: Side-by-side source comparison on same topics
 - [ ] **Trend Analysis**: Topic popularity and coverage patterns over time
 - [ ] **Semantic Similarity**: How similarly different outlets cover the same story
 
-**📊 Interactive Dashboard**
+**Interactive Dashboard**
 - [ ] **Real-time Analytics**: Live updating charts and metrics
 - [ ] **Bias Visualization**: Media bias spectrum visualization
 - [ ] **Topic Networks**: Interactive topic relationship graphs
 - [ ] **Export System**: PDF reports and data export capabilities
 
-### 🚀 Phase 4: Advanced Features
+### Phase 4: Advanced Features
 - [ ] **Machine Learning**: Predictive analytics for news trends
 - [ ] **API Expansion**: Public API for researchers and developers
 - [ ] **Multi-language Support**: Slovak and other regional languages
 - [ ] **Mobile App**: React Native companion app
 - [ ] **AI Insights**: GPT-powered analysis and summaries
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### **Backend Architecture**
-- **🔥 FastAPI**: Modern async Python web framework
-- **🗄️ SQLModel**: Type-safe ORM with Pydantic integration
-- **⚡ SQLite → PostgreSQL**: Scalable database progression
-- **🔧 APScheduler**: Enterprise-grade task scheduling
-- **🦊 Camoufox**: Anti-detection web scraping
-- **🍲 Beautiful Soup**: HTML parsing and extraction
+- **FastAPI**: Modern async Python web framework
+- **🗄SQLModel**: Type-safe ORM with Pydantic integration
+- **SQLite → PostgreSQL**: Scalable database progression
+- **APScheduler**: Enterprise-grade task scheduling
+- **Camoufox**: Anti-detection web scraping
+- **Beautiful Soup**: HTML parsing and extraction
 
 ### **Frontend & UI**
-- **🌐 HTMX**: Dynamic HTML without JavaScript complexity
-- **🎨 Tailwind CSS**: Utility-first CSS framework
-- **📋 Jinja2**: Server-side templating
-- **📊 Chart.js**: Interactive data visualizations (planned)
+- **HTMX**: Dynamic HTML without JavaScript complexity
+- **Tailwind CSS**: Utility-first CSS framework
+- **Jinja2**: Server-side templating
+- **Chart.js**: Interactive data visualizations (planned)
 
 ### **Data Science & NLP**
-- **🧠 spaCy**: Industrial-strength NLP
-- **🤖 Transformers**: BERT/GPT models for semantic analysis
-- **📊 scikit-learn**: Machine learning algorithms
-- **📈 pandas**: Data manipulation and analysis
-- **🔢 NumPy**: Numerical computing
+- **spaCy**: Industrial-strength NLP
+- **Transformers**: BERT/GPT models for semantic analysis
+- **scikit-learn**: Machine learning algorithms
+- **pandas**: Data manipulation and analysis
+- **NumPy**: Numerical computing
 
 ### **Infrastructure**
-- **🐍 Python 3.11+**: Modern Python features
-- **📦 Rye**: Fast Python package management
-- **🐳 Docker**: Containerization (planned)
-- **☁️ Cloud Deploy**: AWS/GCP deployment (planned)
+- **Python 3.11+**: Modern Python features
+- **Rye**: Fast Python package management
+- **Docker**: Containerization (planned)
+- **Cloud Deploy**: AWS/GCP deployment (planned)
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.11+
@@ -209,9 +209,9 @@ gantt
    ```
 
 4. **Access the interface**
-   - 🌐 Web UI: http://localhost:8000
-   - 📚 API Docs: http://localhost:8000/docs
-   - 🔍 Health Check: http://localhost:8000/health
+   - Web UI: http://localhost:8000
+   - API Docs: http://localhost:8000/docs
+   - Health Check: http://localhost:8000/health
 
 ## 📖 API Documentation
 
@@ -253,24 +253,24 @@ POST /api/scrape/schedule
 }
 ```
 
-## 🎯 Use Cases & Applications
+## Use Cases & Applications
 
-### **🏛️ For Researchers & Academics**
+### **For Researchers & Academics**
 - **Media Bias Studies**: Quantitative analysis of editorial perspectives
 - **Political Communication**: How political events are covered across outlets
 - **Linguistic Research**: Czech language corpus for NLP research
 
-### **📰 For Journalists & Media**
+### **For Journalists & Media**
 - **Competitive Analysis**: Monitor how competitors cover stories
 - **Story Discovery**: Identify trending topics across multiple sources
 - **Fact Checking**: Compare different versions of the same story
 
-### **🏢 For Businesses & PR**
+### **For Businesses & PR**
 - **Brand Monitoring**: Track company mentions across news sources
 - **Crisis Management**: Monitor news sentiment during incidents
 - **Market Intelligence**: Industry news aggregation and analysis
 
-## 🔧 Configuration
+## Configuration
 
 ### **Environment Variables**
 ```bash
@@ -302,7 +302,7 @@ SENTIMENT_THRESHOLD = 0.1
 TOPIC_MODEL_COMPONENTS = 10
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how to get started:
 
@@ -328,7 +328,7 @@ isort src/
 mypy src/
 ```
 
-## 📊 Project Structure
+## Project Structure
 
 ```
 python-news-scraper/
@@ -359,43 +359,20 @@ python-news-scraper/
 └── 📄 requirements*.lock             # Locked dependencies
 ```
 
-## 📈 Performance Metrics
-
-### **Current Benchmarks**
-- **⚡ Scraping Speed**: ~50 articles/minute per source
-- **🔄 Concurrent Tasks**: Up to 10 simultaneous scraping jobs
-- **💾 Database Performance**: 1000+ articles/second insertion
-- **🌐 API Response Time**: <100ms average response time
-- **📱 Frontend Load Time**: <2s initial page load
-
-### **Scalability Targets**
-- **📊 Articles**: 1M+ articles capacity
-- **👥 Concurrent Users**: 100+ simultaneous users
-- **🔍 Search Performance**: <500ms full-text search
-- **⚡ Real-time Updates**: <1s update propagation
-
-## 📄 License
+## License
 
 This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](LICENSE.txt) file for details.
 
 ### **Why GPL v3?**
-- **🔓 Open Source**: Ensures the project remains open and accessible
-- **🤝 Community**: Encourages contributions and improvements
-- **🛡️ Protection**: Prevents proprietary forks without contribution back
+- **Open Source**: Ensures the project remains open and accessible
+- **Community**: Encourages contributions and improvements
+- **🛡Protection**: Prevents proprietary forks without contribution back
 
-## 🙏 Acknowledgments
+## Support & Contact
 
-- **🦊 Camoufox Team**: Anti-detection browser technology
-- **⚡ FastAPI Community**: Modern async web framework
-- **🧠 spaCy Team**: Industrial-strength NLP library
-- **🇨🇿 Czech Media**: Sources for valuable news content
-
-## 📞 Support & Contact
-
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/username/python-news-scraper/issues)
-- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/username/python-news-scraper/discussions)
-- 📧 **Email**: [business@tadeasfort.com](mailto:business@tadeasfort.com)
-- 🐦 **Twitter**: [@tadeasfort](https://twitter.com/tadeasfort)
+- **Bug Reports**: [GitHub Issues](https://github.com/tadeasf/python-news-scraper/issues)
+- **Feature Requests**: [GitHub Discussions](https://github.com/tadeasf/python-news-scraper/discussions)
+- **Email**: [business@tadeasfort.com](mailto:business@tadeasfort.com)
 
 ---
 
